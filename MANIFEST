@@ -1,0 +1,13 @@
+Build.PL
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
+dist.ini
+lib/Pod/Weaver/Section/Extends.pm
+t/Test-PWSC/dist.ini
+t/Test-PWSC/lib/Test/PWSC.pm
+t/weaver.ini
+weaver.ini

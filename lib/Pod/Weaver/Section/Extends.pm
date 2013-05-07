@@ -1,4 +1,7 @@
 package Pod::Weaver::Section::Extends;
+{
+  $Pod::Weaver::Section::Extends::VERSION = '0.0081';
+}
 
 use strict;
 use warnings;
@@ -72,7 +75,17 @@ sub _get_parents {
 1;
 
 
+
+__END__
 =pod
+
+=head1 NAME
+
+Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
+
+=head1 VERSION
+
+version 0.0081
 
 =head1 SYNOPSIS
 
@@ -85,4 +98,17 @@ In your C<weaver.ini>:
 This L<Pod::Weaver> section plugin creates an "EXTENDS" section in your POD
 which will contain a list of your class's parent classes. It accomplishes
 this by attempting to compile your class and inspecting its C<@ISA>. 
+
+=head1 AUTHOR
+
+Mike Friedman <friedo@friedo.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Mike Friedman.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
 
