@@ -1,6 +1,6 @@
 package Pod::Weaver::Section::Extends;
 {
-  $Pod::Weaver::Section::Extends::VERSION = '0.0081';
+  $Pod::Weaver::Section::Extends::VERSION = '0.0082';
 }
 
 use strict;
@@ -85,7 +85,7 @@ Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
 
 =head1 VERSION
 
-version 0.0081
+version 0.0082
 
 =head1 SYNOPSIS
 
