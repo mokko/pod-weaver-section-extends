@@ -7,6 +7,7 @@ package Pod::Weaver::Section::Extends;
 use strict;
 use warnings;
 use Module::Load;
+use Class::Unload;
 use Moose;
 with 'Pod::Weaver::Role::Section';
 
@@ -25,12 +26,14 @@ sub weave_section {
     $module =~ s{^lib/}{}; #will there be a backslash on win32?
     $module =~ s{/}{::}g;
     $module =~ s{\.pm$}{};
-    #print "module:$module\n";
+    #print "loading module:$module\n"; 
     eval { local @INC = ( 'lib', @INC ); load $module }; 
     print $@ if $@;
 
     my @parents = $self->_get_parents( $module );        
-
+    #leave prestine environment for listdeps; 
+    #I don't think that should be necessary, we sure loose time here.
+    Class::Unload->unload( $module ); 
     return unless @parents;
 
     my @pod = (
