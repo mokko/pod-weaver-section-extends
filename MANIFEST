@@ -1,5 +1,4 @@
 Build.PL
-Changes
 LICENSE
 MANIFEST
 META.json
@@ -8,7 +7,4 @@ Makefile.PL
 README
 dist.ini
 lib/Pod/Weaver/Section/Extends.pm
-t/Test-PWSC/dist.ini
-t/Test-PWSC/lib/Test/PWSC.pm
-t/weaver.ini
 weaver.ini
