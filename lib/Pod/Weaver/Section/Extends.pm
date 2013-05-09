@@ -1,6 +1,6 @@
 package Pod::Weaver::Section::Extends;
 {
-  $Pod::Weaver::Section::Extends::VERSION = '0.0091';
+  $Pod::Weaver::Section::Extends::VERSION = '0.0092';
 }
 # ABSTRACT: Add a list of parent classes to your POD.
 
@@ -12,6 +12,7 @@ with 'Pod::Weaver::Role::Section';
 
 use aliased 'Pod::Elemental::Element::Nested';
 use aliased 'Pod::Elemental::Element::Pod5::Command';
+my @ORIG_INC = @INC;
 
 sub weave_section { 
     my ( $self, $doc, $input ) = @_;
@@ -28,6 +29,7 @@ sub weave_section {
     #print "module:$module\n";
     unshift @INC, './lib';
     eval { load $module };    #use full path for require
+    @INC = @ORIG_INC;
     print $@ if $@;
 
     my @parents = $self->_get_parents( $module );        
@@ -69,7 +71,7 @@ sub _get_parents {
     return @{ $module . '::ISA' };
 }
 
-
+__PACKAGE__->meta->make_immutable;
 1;
 
 
@@ -83,7 +85,7 @@ Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
 
 =head1 VERSION
 
-version 0.0091
+version 0.0092
 
 =head1 SYNOPSIS
 

@@ -18,7 +18,7 @@ my %module_build_args = (
     "Mike Friedman <friedo\@friedo.com>"
   ],
   "dist_name" => "Pod-Weaver-Section-Extends",
-  "dist_version" => "0.0091",
+  "dist_version" => "0.0092",
   "license" => "perl",
   "module_name" => "Pod::Weaver::Section::Extends",
   "recommends" => {},

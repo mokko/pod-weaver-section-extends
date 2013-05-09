@@ -25,4 +25,4 @@ requires:
   warnings: 0
 resources:
   repository: git://github.com/mokko/pod-weaver-section-extends.git
-version: 0.0091
+version: 0.0092
