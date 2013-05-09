@@ -1,13 +1,10 @@
 package Pod::Weaver::Section::Extends;
+# ABSTRACT: Add a list of parent classes to your POD.
 
 use strict;
 use warnings;
-use lib './lib';
-
-# ABSTRACT: Add a list of parent classes to your POD.
-
-use Moose;
 use Module::Load;
+use Moose;
 with 'Pod::Weaver::Role::Section';
 
 use aliased 'Pod::Elemental::Element::Nested';
@@ -17,16 +14,17 @@ sub weave_section {
     my ( $self, $doc, $input ) = @_;
 
     my $filename = $input->{filename};
-    return unless $filename =~ m{^lib/};
+    #extend section is written only for lib/*.pm and for one package pro file
+    return if $filename !~ m{^lib};
+    return if $filename !~ m{\.pm$};
 
-    # works only if one package pro file
-    my $inc_filename = $filename;         #as in %INC's keys
-    $inc_filename =~ s{^lib/}{};          # assume modules live under lib
-    my $module = $inc_filename;
+    my $module = $filename;
+    $module =~ s{^lib/}{}; #will there be a backslash on win32?
     $module =~ s{/}{::}g;
-    $module =~ s{\.\w+$}{};
-
-    eval { load $inc_filename };
+    $module =~ s{\.pm$}{};
+    #print "module:$module\n";
+    unshift @INC, './lib';
+    eval { load $module };    #use full path for require
     print $@ if $@;
 
     my @parents = $self->_get_parents( $module );        
